@@ -8,6 +8,7 @@ import Cart from './components/Cart'
 function App() {
 
   const [items, setItems] = useState(products)
+  const [type, setType] = useState('')
 
 
   function addToCart(item) {
@@ -58,10 +59,22 @@ function App() {
     setItems(products)
   }
 
+
+  function itemsToDisplay() {
+    let products = items
+    if (type === 'fruit') {
+      products = items.filter(item => item.productType === 'fruit')
+    }
+    if (type === 'vegetable') {
+      products = items.filter(item => item.productType === 'vegetable')
+    }
+    return products
+  }
+
   return (
     <div className="App">
 
-      < ItemsList items={items} addToCart={addToCart} setItems={setItems} sortByPrice={sortByPrice} sortByName={sortByName} />
+      < ItemsList itemsToDisplay={itemsToDisplay} setType={setType} addToCart={addToCart} setItems={setItems} sortByPrice={sortByPrice} sortByName={sortByName} />
 
       <Cart items={items} getTotal={getTotal} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
 

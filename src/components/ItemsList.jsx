@@ -8,9 +8,13 @@ function ItemsList(props) {
 
             <button onClick={() => props.sortByName()}>Sort By Name</button>
 
+            <button onClick={() => props.setType('fruit')}>Fruits</button>
+
+            <button onClick={() => props.setType('vegetable')}>Vegetables</button>
+
             <ul className='item-list store--item-list'>
                 {
-                    props.items.map(item => (
+                    props.itemsToDisplay().map(item => (
                         <Item item={item} addToCart={props.addToCart} key={item.id} />)
                     )
                 }
