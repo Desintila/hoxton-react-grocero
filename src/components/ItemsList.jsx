@@ -1,19 +1,18 @@
+import Item from "./Item"
+
 function ItemsList(props) {
     return (
         <header id="store">
             <h1>Grocero</h1>
+            <button onClick={() => props.sortByPrice()}>Sort By Price</button>
+
+            <button onClick={() => props.sortByName()}>Sort By Name</button>
+
             <ul className='item-list store--item-list'>
                 {
                     props.items.map(item => (
-                        <li>
-                            <div className='store--item-icon'>
-                                <img src={`./icons/${item.id.toString().padStart(3, '0')}-${item.name}.svg`} alt={item.name} />
-                            </div>
-                            <button onClick={() => props.addToCart(item)}>Add to cart</button>
-                        </li>)
-
+                        <Item item={item} addToCart={props.addToCart} key={item.id} />)
                     )
-
                 }
 
             </ul>

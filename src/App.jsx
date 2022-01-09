@@ -40,10 +40,28 @@ function App() {
   }
 
 
+  function sortByPrice() {
+    const products = [...items]
+    products.sort((a, b) => a.price - b.price)
+    setItems(products)
+  }
+
+
+  function sortByName() {
+    const products = [...items]
+    products.sort((a, b) => {
+      if (a.name < b.name)
+        return -1
+      if (a.name > b.name)
+        return 1
+    })
+    setItems(products)
+  }
+
   return (
     <div className="App">
 
-      < ItemsList items={items} addToCart={addToCart} />
+      < ItemsList items={items} addToCart={addToCart} setItems={setItems} sortByPrice={sortByPrice} sortByName={sortByName} />
 
       <Cart items={items} getTotal={getTotal} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
 
